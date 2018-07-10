@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <title>百度地图离线API V2.1  www.xiaoguo123.com</title>
+	<style type="text/css">
+  body, html,#map_demo, #tab, #mapfrm {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+  #menu{height:100%;overflow-y:auto}
+  td{font-size:14px}
+  h4{margin:0;}
+  #map_demo1,#map_demo2{height: 50%}
+  </style>
+  <script type="text/javascript" src="../../offlinemap/map_load.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../offlinemap/css/map.css"/>
+  
+  <script type="text/javascript" src="../jquery.js"></script>
+  <script type="text/javascript" src="../layer/layer.js"></script>
+</head>
+<body>
+<input type="button" onclick="add_overlay();" value="添加覆盖物" />
+		<input type="button" onclick="remove_overlay();" value="删除覆盖物" />
+<div id="map_demo">1</div>
+</body>
+</html>
+<script type="text/javascript">  
+	// 百度地图API功能
+	var map = new BMap.Map("map_demo");
+	var point = new BMap.Point(116.404, 36.915);
+	map.centerAndZoom(point, 7);
+	
+	var marker = new BMap.Marker(new BMap.Point(116.404, 39.915)); // 创建点
+	var polyline = new BMap.Polyline([
+		new BMap.Point(116.399, 39.910),
+		new BMap.Point(116.405, 39.920),
+		new BMap.Point(110.425, 36.900)
+	], {strokeColor:"red", strokeWeight:2, strokeOpacity:0.5});   //创建折线
+	
+	var circle = new BMap.Circle(point, 19500,{strokeColor:"red", strokeWeight:2, strokeOpacity:0.5}); //创建圆
+	
+	var polygon = new BMap.Polygon([
+		new BMap.Point(116.387112,39.920977),
+		new BMap.Point(116.385243,36.913063),
+		new BMap.Point(110.394226,39.917988),
+		new BMap.Point(112.401772,38.921364),
+		new BMap.Point(115.41248,39.927893)
+	], {strokeColor:"blue", strokeWeight:2, strokeOpacity:0.5});  //创建多边形
+	
+	var pStart = new BMap.Point(116.692214,39.918985);
+	var pEnd = new BMap.Point(118.41478,33.911901);
+	var rectangle = new BMap.Polygon([
+		new BMap.Point(pStart.lng,pStart.lat),
+		new BMap.Point(pEnd.lng,pStart.lat),
+		new BMap.Point(pEnd.lng,pEnd.lat),
+		new BMap.Point(pStart.lng,pEnd.lat)
+	], {strokeColor:"blue", strokeWeight:2, strokeOpacity:0.5});  //创建矩形
+	
+	//添加覆盖物
+	function add_overlay(){
+		map.addOverlay(marker);            //增加点
+		map.addOverlay(polyline);          //增加折线
+		map.addOverlay(circle);            //增加圆
+		map.addOverlay(polygon);           //增加多边形
+		map.addOverlay(rectangle);         //增加矩形
+	}
+	//清除覆盖物
+	function remove_overlay(){
+		map.clearOverlays();         
+	}
+
+</script>

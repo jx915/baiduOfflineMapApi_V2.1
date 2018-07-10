@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <title>百度地图离线API V2.1  www.xiaoguo123.com</title>
+	<style type="text/css">
+  body, html,#map_demo, #tab, #mapfrm {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+  #menu{height:100%;overflow-y:auto}
+  td{font-size:14px}
+  h4{margin:0;}
+  #map_demo1,#map_demo2{height: 50%}
+  </style>
+  <script type="text/javascript" src="../../offlinemap/map_load.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../offlinemap/css/map.css"/>
+  
+  <script type="text/javascript" src="../jquery.js"></script>
+  <script type="text/javascript" src="../layer/layer.js"></script>
+</head>
+<body>
+<div id="map_demo">1</div>
+</body>
+</html>
+<script type="text/javascript">  
+ layer.msg('点击标注查看信息窗口');
+// 百度地图API功能
+	var map = new BMap.Map("map_demo");
+	var point = new BMap.Point(116.418261, 39.921984);
+	map.centerAndZoom(point, 8);
+	map.enableScrollWheelZoom();                        //启用滚轮放大缩小
+  
+var data_info = [[115.417854,39.921988,"地址：北京市东城区王府井大街88号乐天银泰百货八层"],
+					 [114.406605,39.921585,"地址：北京市东城区东华门大街"],
+					 [113.412222,39.912345,"地址：北京市东城区正义路甲5号"]
+					];
+	var opts = {
+				width : 250,     // 信息窗口宽度
+				height: 80,     // 信息窗口高度
+				title : "信息窗口" , // 信息窗口标题
+				enableMessage:true//设置允许信息窗发送短息
+			   };
+	for(var i=0;i<data_info.length;i++){
+		var marker = new BMap.Marker(new BMap.Point(data_info[i][0],data_info[i][1]));  // 创建标注
+		var content = data_info[i][2];
+		map.addOverlay(marker);               // 将标注添加到地图中
+		addClickHandler(content,marker);
+	}
+	function addClickHandler(content,marker){
+		marker.addEventListener("click",function(e){
+			openInfo(content,e)}
+		);
+	}
+	function openInfo(content,e){
+		var p = e.target;
+		var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
+		var infoWindow = new BMap.InfoWindow(content,opts);  // 创建信息窗口对象 
+		map.openInfoWindow(infoWindow,point); //开启信息窗口
+	}
+</script>

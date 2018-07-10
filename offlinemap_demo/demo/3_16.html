@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <title>百度地图离线API V2.0  www.xiaoguo123.com</title>
+	<style type="text/css">
+  body, html,#map_demo, #tab, #mapfrm {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+  #menu{height:100%;overflow-y:auto}
+  td{font-size:14px}
+  h4{margin:0;}
+  #map_demo1,#map_demo2{height: 50%}
+  </style>
+  <script type="text/javascript" src="../../offlinemap/map_load.js"></script>
+  <script type="text/javascript" src="../../offlinemap/tools/TextIconOverlay_min.js"></script>
+  <script type="text/javascript" src="../../offlinemap/tools/MarkerClusterer_min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../offlinemap/css/map.css"/>
+  
+  <script type="text/javascript" src="../jquery.js"></script>
+  <script type="text/javascript" src="../layer/layer.js"></script>
+</head>
+<body>
+
+<div id="map_demo">1</div>
+</body>
+</html>
+<script type="text/javascript">  
+// 百度地图API功能
+	var map = new BMap.Map("map_demo");
+	var point = new BMap.Point(116.3964,39.9093);
+	map.centerAndZoom(point, 4);
+	map.enableScrollWheelZoom();                        //启用滚轮放大缩小
+  
+	var MAX = 10;
+	var markers = [];
+	var pt = null;
+	var i = 0;
+	for (; i < MAX; i++) {
+	   pt = new BMap.Point(Math.random() * 40 + 85, Math.random() * 30 + 21);
+	   markers.push(new BMap.Marker(pt));
+	}
+	//最简单的用法，生成一个marker数组，然后调用markerClusterer类即可。
+	var markerClusterer = new BMapLib.MarkerClusterer(map, {markers:markers});
+
+</script>

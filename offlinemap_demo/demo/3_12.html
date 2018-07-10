@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <title>百度地图离线API V2.1  www.xiaoguo123.com</title>
+	<style type="text/css">
+  body, html,#map_demo, #tab, #mapfrm {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+  #menu{height:100%;overflow-y:auto}
+  td{font-size:14px}
+  h4{margin:0;}
+  #map_demo1,#map_demo2{height: 50%}
+  </style>
+  <script type="text/javascript" src="../points-sample-data.js"></script>
+
+  <script type="text/javascript" src="../../offlinemap/map_load.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../offlinemap/css/map.css"/>
+  
+  <script type="text/javascript" src="../jquery.js"></script>
+  <script type="text/javascript" src="../layer/layer.js"></script>
+</head>
+<body>
+<div id="map_demo">1</div>
+</body>
+</html>
+<script type="text/javascript">  
+	// 百度地图API功能
+	var map = new BMap.Map("map_demo");
+	var point = new BMap.Point(105.900244,39.92556);
+	map.centerAndZoom(point, 5);
+	map.enableScrollWheelZoom();                        //启用滚轮放大缩小
+  
+	layer.msg( '绘制'+data.data.length+'个点' );
+	if (document.createElement('canvas').getContext) {  // 判断当前浏览器是否支持绘制海量点
+        var points = [];  // 添加海量点数据
+        for (var i = 0; i < data.data.length; i++) {
+          points.push(new BMap.Point(data.data[i][0], data.data[i][1]));
+        }
+        var options = {
+            size: BMAP_POINT_SIZE_SMALL,
+            shape: BMAP_POINT_SHAPE_STAR,
+            color: '#d340c3'
+        }
+        var pointCollection = new BMap.PointCollection(points, options);  // 初始化PointCollection
+        pointCollection.addEventListener('click', function (e) {
+          alert('单击点的坐标为：' + e.point.lng + ',' + e.point.lat);  // 监听点击事件
+        });
+        map.addOverlay(pointCollection);  // 添加Overlay
+    } else {
+        alert('请在chrome、safari、IE8+以上浏览器查看本示例');
+    }
+	
+
+</script>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <title>百度地图离线API V2.1  www.xiaoguo123.com</title>
+	<style type="text/css">
+  body, html,#map_demo, #tab, #mapfrm {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+  #menu{height:100%;overflow-y:auto}
+  td{font-size:14px}
+  h4{margin:0;}
+  #map_demo1,#map_demo2{height: 50%}
+  </style>
+  <script type="text/javascript" src="../../offlinemap/map_load.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../offlinemap/css/map.css"/>
+  <script type="text/javascript" src="../yunnan.js"></script> <!--云南轮廓 -->
+  
+  <script type="text/javascript" src="../jquery.js"></script>
+  <script type="text/javascript" src="../layer/layer.js"></script>
+</head>
+<body>
+<div id="map_demo">1</div>
+</body>
+</html>
+<script type="text/javascript">  
+	// 百度地图API功能
+	var map = new BMap.Map("map_demo");
+	var point = new BMap.Point(102.730672, 24.792349);
+	map.centerAndZoom(point, 7);
+	map.enableScrollWheelZoom();                        //启用滚轮放大缩小
+  
+	//绘制云南省份的轮廓, 用BMap.Boundary()在线获得数据（rs.boundaries[i]）后存储在本地
+	//http://developer.baidu.com/map/jsdemo.htm
+	var prov_area = new BMap.Polygon(prov_boundary, {strokeWeight: 2, strokeColor: "#ff0000"});
+	map.addOverlay(prov_area);
+</script>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <title>百度地图离线API V2.1  www.xiaoguo123.com</title>
+	<style type="text/css">
+  body, html,#allmap, #tab, #mapfrm {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+  #menu{max-height:600px;overflow-y:auto}
+  #menu ul{padding:0; padding-left:10px;margin:0}
+  td{font-size:14px;background-color: #f7f9fd;}
+  h3{margin:0}
+  h4{margin:0;}
+  #mapfrm{border:0}
+  /**设置滚动条的样式**/
+	::-webkit-scrollbar {
+	    width: 10px;
+	}
+	/**滚动槽**/
+	::-webkit-scrollbar-track {
+	    box-shadow: inset 0 0 6px #d1cfcf; 
+	    border-radius: 10px;
+	}
+	/**滚动条滑块**/
+	::-webkit-scrollbar-thumb {
+	    border-radius: 12px;
+	    background: #f7f7f7; 
+	    -webkit-box-shadow: inset 0 0 6px #d1cfcf; 
+	}
+	::-webkit-scrollbar-thumb:window-inactive {
+	    background: rgba(245,245,245,0.4); 
+	}
+  </style>
+	<script type="text/javascript" src="offlinemap_demo/jquery.js"></script>
+</head>
+<body>
+<table id="tab" border="0">
+    <tr>
+      <td width="240" valign="top" height="100%">
+      <div id="menu">
+      <h3>百度地图API V2.1 离线版</h3>
+        <div class="item">
+          <h4>地图示例</h4>
+          <ul>
+            <li><a href="offlinemap_demo/demo/1_0.html" target="mapfrm">地图展示</a></li>
+            <li><a href="offlinemap_demo/demo/1_11.html" target="mapfrm">卫星混合地图 new</a></li>
+            <li><a href="offlinemap_demo/demo/1_1.html" target="mapfrm">异步加载地图(不支持IE8)</a></li>
+            <li><a href="offlinemap_demo/demo/1_2.html" target="mapfrm">同时加载两个地图</a></li>
+            <li><a href="offlinemap_demo/demo/1_10.html" target="mapfrm">通过城市名设置中心</a></li>
+            <li><a href="offlinemap_demo/demo/1_3.html" target="mapfrm">设置地图最大、最小级别</a></li>
+            <li><a href="offlinemap_demo/demo/1_4.html" target="mapfrm">移动地图（北京到广州）</a></li>
+            <li><a href="offlinemap_demo/demo/1_5.html" target="mapfrm">缩放地图</a></li>
+            <li><a href="offlinemap_demo/demo/1_6.html" target="mapfrm">拖曳地图</a></li>
+            <li><a href="offlinemap_demo/demo/1_7.html" target="mapfrm">设置地图显示范围</a></li>
+            <li><a href="offlinemap_demo/demo/1_8.html" target="mapfrm">获取地图显示范围</a></li>
+            <li><a href="offlinemap_demo/demo/1_9.html" target="mapfrm">获取两点间的距离</a></li>
+          </ul>
+        </div>
+        
+        <div class="item">
+          <h4>地图控件示例</h4>
+          <ul>
+            <li><a href="offlinemap_demo/demo/2_0.html" target="mapfrm">添加删除工具条、比例尺</a></li>
+            <li><a href="offlinemap_demo/demo/2_1.html" target="mapfrm">添加删除地图类型、缩略图控件</a></li>
+            <li><a href="offlinemap_demo/demo/2_2.html" target="mapfrm">添加第三方版权控件</a></li>
+            <li><a href="offlinemap_demo/demo/2_3.html" target="mapfrm">添加自定义控件</a></li>
+          </ul>
+        </div>
+        
+        <div class="item">
+          <h4>覆盖物示例</h4>
+          <ul>
+            <li><a href="offlinemap_demo/demo/3_0.html" target="mapfrm">添加删除覆盖物</a></li>
+            <li><a href="offlinemap_demo/demo/3_1.html" target="mapfrm">设置点的弹跳动画</a></li>
+            <li><a href="offlinemap_demo/demo/3_2.html" target="mapfrm">设置点的新图标</a></li>
+            <li><a href="offlinemap_demo/demo/3_3.html" target="mapfrm">设置点是否可拖曳</a></li>
+            <li><a href="offlinemap_demo/demo/3_4.html" target="mapfrm">设置线面可编辑</a></li>
+            <li><a href="offlinemap_demo/demo/3_5.html" target="mapfrm">设置覆盖物显示隐藏</a></li>
+            <li><a href="offlinemap_demo/demo/3_6.html" target="mapfrm">添加文字标签</a></li>
+            <li><a href="offlinemap_demo/demo/3_7.html" target="mapfrm">设置覆盖物文字标签</a></li>
+            <li><a href="offlinemap_demo/demo/3_8.html" target="mapfrm">获取覆盖物信息</a></li>
+            <li><a href="offlinemap_demo/demo/3_9.html" target="mapfrm">添加多个点示例</a></li>
+            <li><a href="offlinemap_demo/demo/3_10.html" target="mapfrm">从多个点中删除特定的点</a></li>
+            <li><a href="offlinemap_demo/demo/3_11.html" target="mapfrm">绘制闪烁点</a></li>
+            <li><a href="offlinemap_demo/demo/3_12.html" target="mapfrm">绘制海量的点</a></li>
+            <li><a href="offlinemap_demo/demo/3_13.html" target="mapfrm">绘制编辑弧线</a></li>
+            <li><a href="offlinemap_demo/demo/3_14.html" target="mapfrm">绘制椭圆</a></li>
+            <li><a href="offlinemap_demo/demo/3_15.html" target="mapfrm">添加自定义覆盖物</a></li>
+            <li><a href="offlinemap_demo/demo/3_16.html" target="mapfrm">点聚合</a></li>
+            <li><a href="offlinemap_demo/demo/3_17.html" target="mapfrm">热力图</a></li>
+            <li><a href="offlinemap_demo/demo/3_18.html" target="mapfrm">矢量图</a></li>
+			<li><a href="offlinemap_demo/demo/3_19.html" target="mapfrm">添加行政区域 new</a></li>
+			<li><a href="offlinemap_demo/demo/3_20.html" target="mapfrm">添加/删除地面叠加层 new</a></li>
+          </ul>
+        </div>
+        
+        <div class="item">
+          <h4>信息窗口示例</h4>
+          <ul>
+            <li><a href="offlinemap_demo/demo/4_0.html" target="mapfrm">纯文本信息窗口</a></li>
+            <li><a href="offlinemap_demo/demo/4_1.html" target="mapfrm">图文组合的信息窗口</a></li>
+            <li><a href="offlinemap_demo/demo/4_2.html" target="mapfrm">给多个点添加信息窗口</a></li>
+            <li><a href="offlinemap_demo/demo/4_3.html" target="mapfrm">获得信息窗口的内容</a></li>
+          </ul>
+        </div>
+        
+        <div class="item">
+          <h4>右键菜单示例</h4>
+          <ul>
+            <li><a href="offlinemap_demo/demo/5_0.html" target="mapfrm">地图添加右键菜单</a></li>
+            <li><a href="offlinemap_demo/demo/5_1.html" target="mapfrm">覆盖物右键菜单</a></li>
+          </ul>
+        </div>
+        
+        <div class="item">
+          <h4>鼠标示例</h4>
+          <ul>
+            <li><a href="offlinemap_demo/demo/6_0.html" target="mapfrm">鼠标拉框放大地图</a></li>
+            <li><a href="offlinemap_demo/demo/6_1.html" target="mapfrm">鼠标点击拾取坐标</a></li>
+            <li><a href="offlinemap_demo/demo/6_2.html" target="mapfrm">鼠标测距 new</a></li>
+            <li><a href="offlinemap_demo/demo/6_3.html" target="mapfrm">鼠标绘制线面 new</a></li>
+          </ul>
+        </div>
+        
+        <div class="item">
+          <h4>事件示例</h4>
+          <ul>
+            <li><a href="offlinemap_demo/demo/7_0.html" target="mapfrm">地图加载完成</a></li>
+            <li><a href="offlinemap_demo/demo/7_1.html" target="mapfrm">地图单击事件</a></li>
+            <li><a href="offlinemap_demo/demo/7_2.html" target="mapfrm">覆盖物注册事件</a></li>
+            <li><a href="offlinemap_demo/demo/7_3.html" target="mapfrm">传递事件参数</a></li>
+            <li><a href="offlinemap_demo/demo/7_4.html" target="mapfrm">多个点注册事件</a></li>
+			<li><a href="offlinemap_demo/demo/7_5.html" target="mapfrm">注销事件</a></li>
+          </ul>
+        </div>
+        
+      </div>
+      </td>
+      <td valign="top" height="100%">
+      <iframe class="" unselectable="on" name="mapfrm" id="mapfrm" src="offlinemap_demo/demo/1_0.html"></iframe>
+      </td>
+    </tr>
+  </table>
+</body>
+<script type="text/javascript">  
+
+</script>
+</html>

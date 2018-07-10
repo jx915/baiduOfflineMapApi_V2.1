@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <title>百度地图离线API V2.1  www.xiaoguo123.com</title>
+	<style type="text/css">
+  body, html,#map_demo, #tab, #mapfrm {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+  #menu{height:100%;overflow-y:auto}
+  td{font-size:14px}
+  h4{margin:0;}
+  #map_demo1,#map_demo2{height: 50%}
+  </style>
+  <script type="text/javascript" src="../../offlinemap/map_load.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../offlinemap/css/map.css"/>
+  
+  <script type="text/javascript" src="../jquery.js"></script>
+  <script type="text/javascript" src="../layer/layer.js"></script>
+</head>
+<body>
+<div id="r-result">
+    <input type="button" onclick="addGroundOverlay();" value="添加" />
+    <input type="button" onclick="removeGroundOverlay();" value="删除" />
+  </div>
+<div id="map_demo">1</div>
+</body>
+</html>
+<script type="text/javascript">  
+  var map = new BMap.Map("map_demo");
+  var point = new BMap.Point(116.404449, 39.914889);
+  map.centerAndZoom(point, 12);
+  map.enableScrollWheelZoom();
+  
+  // 西南角和东北角
+  var SW = new BMap.Point(116.29579,39.837146);
+  var NE = new BMap.Point(116.475451,39.9764);
+
+  groundOverlayOptions = {
+    opacity: 1,
+    displayOnMinLevel: 10,
+    displayOnMaxLevel: 14
+  }
+
+  // 初始化GroundOverlay
+  var groundOverlay = new BMap.GroundOverlay(new BMap.Bounds(SW, NE), groundOverlayOptions);
+
+  // 设置GroundOverlay的图片地址
+  groundOverlay.setImageURL('../si-huan.png');
+
+  // 单击事件
+  groundOverlay.addEventListener('click', function (clickEvent) {
+    // console.log('clickEvent', clickEvent);
+  });
+
+  // 双击事件
+  groundOverlay.addEventListener('dblclick', function (dblclickEvent) {
+    // console.log('dblclickEvent', dblclickEvent);
+  });
+
+  function addGroundOverlay() {
+    // 添加GroundOverlay
+    map.addOverlay(groundOverlay);
+  }
+
+  function removeGroundOverlay() {
+    // 移除GroundOverlay
+    map.removeOverlay(groundOverlay);
+  }
+  
+</script>

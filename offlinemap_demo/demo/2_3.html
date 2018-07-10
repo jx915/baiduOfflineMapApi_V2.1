@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <title>百度地图离线API V2.1  www.xiaoguo123.com</title>
+	<style type="text/css">
+  body, html,#map_demo, #tab, #mapfrm {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+  #menu{height:100%;overflow-y:auto}
+  td{font-size:14px}
+  h4{margin:0;}
+  #map_demo1,#map_demo2{height: 50%}
+  </style>
+  <script type="text/javascript" src="../../offlinemap/map_load.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../offlinemap/css/map.css"/>
+  
+  <script type="text/javascript" src="../jquery.js"></script>
+  <script type="text/javascript" src="../layer/layer.js"></script>
+</head>
+<body>
+<div id="map_demo">1</div>
+</body>
+</html>
+<script type="text/javascript">  
+	// 百度地图API功能
+	var map = new BMap.Map("map_demo");
+	map.centerAndZoom(new BMap.Point(116.404, 39.915), 4);
+
+	// 定义一个控件类,即function
+	function ZoomControl(){
+	  // 默认停靠位置和偏移量
+	  this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
+	  this.defaultOffset = new BMap.Size(10, 10);
+	}
+
+	// 通过JavaScript的prototype属性继承于BMap.Control
+	ZoomControl.prototype = new BMap.Control();
+
+	// 自定义控件必须实现自己的initialize方法,并且将控件的DOM元素返回
+	// 在本方法中创建个div元素作为控件的容器,并将其添加到地图容器中
+	ZoomControl.prototype.initialize = function(map){
+	  // 创建一个DOM元素
+	  var div = document.createElement("div");
+	  // 添加文字说明
+	  div.appendChild(document.createTextNode("放大1级"));
+	  // 设置样式
+	  div.style.cursor = "pointer";
+	  div.style.border = "1px solid gray";
+	  div.style.backgroundColor = "white";
+	  // 绑定事件,点击一次放大两级
+	  div.onclick = function(e){
+		if( map.getZoom() == 8 ){
+			layer.msg("当前地图最大8级!");
+			return;
+		}
+		map.setZoom(map.getZoom() + 1);
+	  }
+	  // 添加DOM元素到地图中
+	  map.getContainer().appendChild(div);
+	  // 将DOM元素返回
+	  return div;
+	}
+	// 创建控件
+	var myZoomCtrl = new ZoomControl();
+	// 添加到地图当中
+	map.addControl(myZoomCtrl);
+</script>

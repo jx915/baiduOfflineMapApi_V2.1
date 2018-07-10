@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <title>百度地图离线API V2.2  www.xiaoguo123.com</title>
+	<style type="text/css">
+  body, html,#map_demo, #tab, #mapfrm {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+  #menu{height:100%;overflow-y:auto}
+  td{font-size:14px}
+  h4{margin:0;}
+  #map_demo1,#map_demo2{height: 50%}
+  </style>
+  <script type="text/javascript" src="../../offlinemap/map_load.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../offlinemap/css/map.css"/>
+  
+  <script type="text/javascript" src="../jquery.js"></script>
+  <script type="text/javascript" src="../layer/layer.js"></script>
+</head>
+<body>
+
+		<button onclick = "polyline.enableEditing();polygon.enableEditing();">开启线、面编辑功能</button>
+		<button onclick = "polyline.disableEditing();polygon.disableEditing();">关闭线、面编辑功能</button>
+<div id="map_demo">1</div>
+</body>
+</html>
+<script type="text/javascript">  
+	// 百度地图API功能
+	var map = new BMap.Map("map_demo");
+	map.centerAndZoom(new BMap.Point(113.656173,34.767975), 6);
+	map.enableScrollWheelZoom();
+
+	var polyline = new BMap.Polyline([
+		new BMap.Point(115.399, 39.910),
+		new BMap.Point(112.405, 36.920),
+		new BMap.Point(111.423493, 32.907445)
+	], {strokeColor:"blue", strokeWeight:2, strokeOpacity:0.5});   //创建折线
+	map.addOverlay(polyline);   //增加折线
+	
+	var polygon = new BMap.Polygon([
+		new BMap.Point(119.387112,39.920977),
+		new BMap.Point(116.385243,36.913063),
+		new BMap.Point(115.394226,35.917988),
+		new BMap.Point(116.401772,32.921364),
+		new BMap.Point(119.41248,39.927893)
+	], {strokeColor:"blue", strokeWeight:2, strokeOpacity:0.5});  //创建多边形
+	map.addOverlay(polygon);   //增加多边形
+</script>

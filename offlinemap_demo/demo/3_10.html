@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <title>百度地图离线API V2.0  www.xiaoguo123.com</title>
+	<style type="text/css">
+  body, html,#map_demo, #tab, #mapfrm {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+  #menu{height:100%;overflow-y:auto}
+  td{font-size:14px}
+  h4{margin:0;}
+  #map_demo1,#map_demo2{height: 50%}
+  </style>
+  <script type="text/javascript" src="../../offlinemap/map_load.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../offlinemap/css/map.css"/>
+  
+  <script type="text/javascript" src="../jquery.js"></script>
+  <script type="text/javascript" src="../layer/layer.js"></script>
+</head>
+<body>
+<input type="button" onclick="deletePoint()" value="删除id=1"/>
+<div id="map_demo">1</div>
+</body>
+</html>
+<script type="text/javascript">  
+	// 百度地图API功能
+	var map = new BMap.Map("map_demo");
+	var point = new BMap.Point(116.400244,39.92556);
+	map.centerAndZoom(point, 8);
+	map.disableDoubleClickZoom(true);
+		
+	// 编写自定义函数,创建标注
+	function addMarker(point,label){
+		var marker = new BMap.Marker(point);
+		map.addOverlay(marker);
+		marker.setLabel(label);
+	}
+	// 随机向地图添加25个标注
+	var bounds = map.getBounds();
+	var sw = bounds.getSouthWest();
+	var ne = bounds.getNorthEast();
+	var lngSpan = Math.abs(sw.lng - ne.lng);
+	var latSpan = Math.abs(ne.lat - sw.lat);
+	for (var i = 0; i < 10; i++) {
+		var point = new BMap.Point(sw.lng + lngSpan * (Math.random() * 0.7), ne.lat - latSpan * (Math.random() * 0.7));
+		var label = new BMap.Label("我是id="+i,{offset:new BMap.Size(20,-10)});
+		addMarker(point,label);
+	}
+	function deletePoint(){
+		var allOverlay = map.getOverlays();
+		for (var i = 0; i < allOverlay.length -1; i++){
+			if(allOverlay[i].getLabel().content == "我是id=1"){
+				map.removeOverlay(allOverlay[i]);
+				return false;
+			}
+		}
+	}
+</script>

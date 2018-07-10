@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <title>百度地图离线API V2.1  www.xiaoguo123.com</title>
+	<style type="text/css">
+  body, html,#map_demo, #tab, #mapfrm {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+  #menu{height:100%;overflow-y:auto}
+  td{font-size:14px}
+  h4{margin:0;}
+  </style>
+	
+  <link rel="stylesheet" type="text/css" href="../../offlinemap/css/map.css"/>
+</head>
+<body>
+<div id="map_demo"></div>
+</body>
+</html>
+<script type="text/javascript">  
+
+	//百度地图API配置
+	var offmapcfg = {
+	  'home':'../../offlinemap/', //API主目录
+	  'imgext'      : '.jpg',   //瓦片图的后缀 ------ 根据需要修改，一般是 .png .jpg
+	  'tiles_dir'   : '',       //普通瓦片图的地址，为空默认在 offlineemap/tiles/ 目录
+	  'tiles_hybrid': '',       //卫星瓦片图的地址，为空默认在 offlineemap/tiles_hybrid/ 目录
+	  'tiles_self'  : ''        //自定义图层的地址，为空默认在 offlineemap/tiles_self/ 目录
+	};
+
+	//百度地图API功能
+	function loadJScript() {
+		var script = document.createElement("script");
+		script.type = "text/javascript";
+		script.src = "../../offlinemap/map.js";
+		document.body.appendChild(script);    
+		//异步加载增加代码
+		window.BMap=window.BMap||{};
+		window.BMap.apiLoad=function(){delete window.BMap.apiLoad;if(typeof init=="function"){init()}}
+	}
+	function init() {
+		var map = new BMap.Map("map_demo");            // 创建Map实例
+		var point = new BMap.Point(110.404, 35.915); // 创建点坐标
+		map.centerAndZoom(point, 6);                 
+		map.enableScrollWheelZoom();                 //启用滚轮放大缩小
+	}  
+	window.onload = loadJScript;  //异步加载地图
+</script>

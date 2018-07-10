@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <title>百度地图离线API V2.1  www.xiaoguo123.com</title>
+	<style type="text/css">
+  body, html,#map_demo, #tab, #mapfrm {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+  #menu{height:100%;overflow-y:auto}
+  td{font-size:14px}
+  h4{margin:0;}
+  #map_demo1,#map_demo2{height: 50%}
+  </style>
+  <script type="text/javascript" src="../../offlinemap/map_load.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../offlinemap/css/map.css"/>
+  
+  <script type="text/javascript" src="../jquery.js"></script>
+  <script type="text/javascript" src="../layer/layer.js"></script>
+</head>
+<body>
+<input type="button" onclick="showOver()" value="显示" />
+		<input type="button" onclick="hideOver()" value="隐藏" />
+<div id="map_demo">1</div>
+</body>
+</html>
+<script type="text/javascript">  
+	// 百度地图API功能
+	var map = new BMap.Map("map_demo");
+	var point = new BMap.Point(116.404, 39.915);
+	map.centerAndZoom(point, 6);
+	
+	var marker = new BMap.Marker(new BMap.Point(116.404, 39.915));  // 创建标注
+	map.addOverlay(marker);              // 将标注添加到地图中
+	
+	var polyline = new BMap.Polyline([
+		new BMap.Point(115.399, 35.910),
+		new BMap.Point(113.405, 36.920),
+		new BMap.Point(116.425, 33.900)
+	], {strokeColor:"blue", strokeWeight:6, strokeOpacity:0.5});
+	map.addOverlay(polyline);          //增加折线
+	
+	var circle = new BMap.Circle(point,119500);
+	map.addOverlay(circle);            //增加圆
+	hideOver();
+	
+	function showOver(){
+		marker.show(); polyline.show(); circle.show();
+	}
+	function hideOver(){
+		marker.hide(); polyline.hide(); circle.hide();
+	}
+
+</script>

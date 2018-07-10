@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <title>百度地图离线API V2.1  www.xiaoguo123.com</title>
+	<style type="text/css">
+  body, html,#map_demo, #tab, #mapfrm {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+  #menu{height:100%;overflow-y:auto}
+  td{font-size:14px}
+  h4{margin:0;}
+  #map_demo1,#map_demo2{height: 50%}
+  </style>
+  <script type="text/javascript" src="../../offlinemap/map_load.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../offlinemap/css/map.css"/>
+  
+  <script type="text/javascript" src="../jquery.js"></script>
+  <script type="text/javascript" src="../layer/layer.js"></script>
+</head>
+<body>
+<div id="map_demo">1</div>
+</body>
+</html>
+<script type="text/javascript">  
+	// 百度地图API功能
+	var map = new BMap.Map("map_demo");
+	var point = new BMap.Point(116.418261, 39.921984);
+	map.centerAndZoom(point, 8);
+	map.enableScrollWheelZoom();                        //启用滚轮放大缩小
+  
+	var json_data = [[115.404,39.915],[114.383752,39.91334],[116.384502,39.932241]];
+	var pointArray = new Array();
+	for(var i=0;i<json_data.length;i++){
+		var marker = new BMap.Marker(new BMap.Point(json_data[i][0], json_data[i][1])); // 创建点
+		map.addOverlay(marker);    //增加点
+		pointArray[i] = new BMap.Point(json_data[i][0], json_data[i][1]);
+		marker.addEventListener("click",attribute);
+	}
+	//让所有点在视野范围内
+	//map.setViewport(pointArray);
+	//获取覆盖物位置
+	function attribute(e){
+		var p = e.target;
+		layer.open({'content':"marker的位置是" + p.getPosition().lng + "," + p.getPosition().lat});    
+	}
+</script>

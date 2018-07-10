@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <title>百度地图离线API V2.0  www.xiaoguo123.com</title>
+	<style type="text/css">
+  body, html,#map_demo, #tab, #mapfrm {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+  #menu{height:100%;overflow-y:auto}
+  td{font-size:14px}
+  h4{margin:0;}
+  #map_demo1,#map_demo2{height: 50%}
+  </style>
+  <script type="text/javascript" src="../../offlinemap/map_load.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../offlinemap/css/map.css"/>
+  
+  <script type="text/javascript" src="../jquery.js"></script>
+  <script type="text/javascript" src="../layer/layer.js"></script>
+</head>
+<body>
+<input type="button" onclick="add_control();" value="添加" />
+	<input type="button" onclick="delete_control();" value="删除" />
+    离线地图已经支持普通2D地图和卫星混合地图!
+<div id="map_demo">1</div>
+</body>
+</html>
+<script type="text/javascript">  
+
+	// 百度地图API功能
+	var map = new BMap.Map("map_demo");
+	map.centerAndZoom(new BMap.Point(116.404, 39.915), 8);
+
+	var mapType1 = new BMap.MapTypeControl({mapTypes: [BMAP_NORMAL_MAP, BMAP_HYBRID_MAP]}); //地图类型 默认右侧
+	var mapType2 = new BMap.MapTypeControl({anchor: BMAP_ANCHOR_TOP_LEFT, mapTypes: [BMAP_NORMAL_MAP, BMAP_HYBRID_MAP]}); //显示在左侧
+
+	var overView = new BMap.OverviewMapControl(); //缩略图
+	var overViewOpen = new BMap.OverviewMapControl({isOpen:true, anchor: BMAP_ANCHOR_BOTTOM_RIGHT}); //缩略图位置
+	//添加地图类型和缩略图
+	function add_control(){
+		map.addControl(mapType1);          //2D图，卫星图
+		map.addControl(mapType2);          //左上角，默认地图控件
+		map.setCurrentCity("成都");        //重新设置中心城市
+		map.addControl(overView);          //添加默认缩略地图控件
+		map.addControl(overViewOpen);      //右下角，打开
+	}
+	//移除地图类型和缩略图
+	function delete_control(){
+		map.removeControl(mapType1);   //移除2D图，卫星图
+		map.removeControl(mapType2);
+		map.removeControl(overView);
+		map.removeControl(overViewOpen);
+	}
+</script>

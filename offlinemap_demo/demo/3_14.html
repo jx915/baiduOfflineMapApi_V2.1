@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <title>百度地图离线API V2.1  www.xiaoguo123.com</title>
+	<style type="text/css">
+  body, html,#map_demo, #tab, #mapfrm {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+  #menu{height:100%;overflow-y:auto}
+  td{font-size:14px}
+  h4{margin:0;}
+  #map_demo1,#map_demo2{height: 50%}
+  </style>
+  <script type="text/javascript" src="../../offlinemap/map_load.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../offlinemap/css/map.css"/>
+  
+  <script type="text/javascript" src="../jquery.js"></script>
+  <script type="text/javascript" src="../layer/layer.js"></script>
+</head>
+<body>
+<div id="map_demo">1</div>
+</body>
+</html>
+<script type="text/javascript">  
+	// 百度地图API功能
+	var map = new BMap.Map("map_demo");
+	var point = new BMap.Point(116.900244,39.92556);
+	map.centerAndZoom(point, 8);
+	map.enableScrollWheelZoom();                        //启用滚轮放大缩小
+  
+	//centre:椭圆中心点,X:横向经度,Y:纵向纬度
+	function add_oval(centre,x,y)
+	{
+		var assemble=new Array();
+		var angle;
+		var dot;
+		var tangent=x/y;
+		for(i=0;i<36;i++)
+		{
+			angle = (2* Math.PI / 36) * i;
+			dot = new BMap.Point(centre.lng+Math.sin(angle)*y*tangent, centre.lat+Math.cos(angle)*y);
+			assemble.push(dot);
+		}
+		return assemble;
+	}
+	var oval = new BMap.Polygon(add_oval(point,0.6,1.3), {strokeColor:"blue", strokeWeight:6, strokeOpacity:0.5});
+	map.addOverlay(oval);
+
+</script>

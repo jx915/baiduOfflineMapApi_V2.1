@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <title>百度地图离线API V2.1  www.xiaoguo123.com</title>
+	<style type="text/css">
+  body, html,#map_demo, #tab, #mapfrm {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+  #menu{height:100%;overflow-y:auto}
+  td{font-size:14px}
+  h4{margin:0;}
+  </style>
+  <script type="text/javascript" src="../../offlinemap/map_load.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../offlinemap/css/map.css"/>
+  
+  <script type="text/javascript" src="../jquery.js"></script>
+  <script type="text/javascript" src="../layer/layer.js"></script>
+</head>
+<body>
+<div id="map_demo"></div>
+</body>
+<script type="text/javascript">  
+	// 百度地图API功能
+	var map = new BMap.Map("map_demo");    // 创建Map实例
+	map.centerAndZoom(new BMap.Point(116.404, 39.915), 13);  // 初始化地图,设置中心点坐标和地图级别
+	map.setCurrentCity("北京");          // 设置地图中心显示的城市 new！
+	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+	map.addControl(new BMap.NavigationControl());   //缩放按钮
+	map.addControl(new BMap.MapTypeControl( {mapTypes: [BMAP_NORMAL_MAP,BMAP_HYBRID_MAP]} ));   //添加地图类型控件 离线只支持普通、卫星地图; 三维不支持
+
+    var bs = map.getBounds();   //获取可视区域
+	var bssw = bs.getSouthWest();   //可视区域左下角
+	var bsne = bs.getNorthEast();   //可视区域右上角
+	layer.msg("当前地图可视范围是：" + bssw.lng + "," + bssw.lat + "到" + bsne.lng + "," + bsne.lat);
+</script>
+</html>
